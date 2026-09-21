@@ -1,0 +1,90 @@
+/* Tint the entire file header, not the code's red/green diff backgrounds. */
+.file-header[data-prtf-test],
+[data-prtf-test] [class*="DiffFileHeader-module__diff-file-header"] {
+  background: color-mix(in srgb, var(--fgColor-attention, #9a6700) 18%, var(--bgColor-muted, #f6f8fa)) !important;
+  box-shadow: inset 3px 0 var(--fgColor-attention, #9a6700);
+}
+
+/* A plain label makes the distinction readable without relying on color. */
+:is([data-prtf-test], [data-prtf-deleted]) .file-info::before,
+:is([data-prtf-test], [data-prtf-deleted]) [class*="DiffFileHeader-module__file-path-section"]::before {
+  content: "Test";
+  margin-right: 10px;
+  flex-shrink: 0;
+  color: var(--fgColor-attention, #9a6700);
+  font: 600 12px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.file-header[data-prtf-deleted],
+[data-prtf-deleted] [class*="DiffFileHeader-module__diff-file-header"] {
+  background: color-mix(in srgb, var(--fgColor-danger, #d1242f) 14%, var(--bgColor-muted, #f6f8fa)) !important;
+  box-shadow: inset 3px 0 var(--fgColor-danger, #d1242f);
+}
+
+[data-prtf-deleted] .file-info::before,
+[data-prtf-deleted] [class*="DiffFileHeader-module__file-path-section"]::before {
+  content: "Deleted";
+  color: var(--fgColor-danger, #d1242f);
+}
+
+[data-prtf-test][data-prtf-deleted] .file-info::before,
+[data-prtf-test][data-prtf-deleted] [class*="DiffFileHeader-module__file-path-section"]::before {
+  content: "Test · Deleted";
+}
+
+
+#pr-test-files-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 10px 0;
+  color: var(--fgColor-muted, #59636e);
+  font: 12px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#pr-test-files-toolbar .prtf-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+#pr-test-files-toolbar .prtf-count::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--fgColor-attention, #9a6700);
+}
+
+#pr-test-files-toolbar .prtf-actions {
+  display: flex;
+  gap: 6px;
+}
+
+#pr-test-files-toolbar button {
+  appearance: none;
+  padding: 3px 9px;
+  border: 1px solid var(--button-primary-borderColor-rest, #1f883d);
+  border-radius: 5px;
+  background: var(--button-primary-bgColor-rest, #1f883d);
+  color: var(--button-primary-fgColor-rest, #fff);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+#pr-test-files-toolbar button:hover:not(:disabled) {
+  background: var(--button-primary-bgColor-hover, #1a7f37);
+}
+
+#pr-test-files-toolbar button:focus-visible {
+  outline: 2px solid var(--focus-outlineColor, #0969da);
+  outline-offset: 2px;
+}
+
+#pr-test-files-toolbar button:disabled {
+  border-color: #c49b1c;
+  background: #eac54f;
+  color: #24292f;
+  cursor: default;
+}
